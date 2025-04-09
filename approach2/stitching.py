@@ -1,17 +1,6 @@
 import torch
 import kornia
 def stitch_background(imgs: torch.Tensor) -> torch.Tensor:
-    """
-    Args:
-        imgs : input images are a list of 2 images of torch.Tensor represent an input images for task-1.
-    Returns:
-        img: stitched_image: torch.Tensor of the output image. 
-    """
-    """
-    Torch info: All intermediate data structures should use torch data structures or objects. 
-    Numpy and cv2 are not allowed.
-    """
-
 
     img1 = imgs["t1_1.png"].float()
     img2 = imgs["t1_2.png"].float()
@@ -89,13 +78,6 @@ def stitch_background(imgs: torch.Tensor) -> torch.Tensor:
 
 
 def panorama(imgs: torch.Tensor):
-    """
-    Args:
-        imgs : input images are a list of torch.Tensor represent an input images for task-2.
-    Returns:
-        img, result: panorama, overlap: torch.Tensor of the output image. 
-    """
-
     def get_overlap(img1, img2):
         # keypoints
         inp = torch.cat([img1, img2], dim=0)

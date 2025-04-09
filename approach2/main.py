@@ -41,10 +41,9 @@ def main():
 
     # List of panorama images
     panorama_paths = [
-        "images/panaroma/t2_1.png",
-        "images/panaroma/t2_2.png",
-        "images/panaroma/t2_3.png",
-        "images/panaroma/t2_4.png"
+        "images/panaroma/t2_5.jpeg",
+        "images/panaroma/t2_6.jpeg",
+        "images/panaroma/t2_7.jpeg"
     ]
 
     imgs_task2 = {
