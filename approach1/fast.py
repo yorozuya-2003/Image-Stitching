@@ -4,7 +4,6 @@ import random
 import time
 import os
 import sys
-from blending import feather_blend, poisson_blend, optimal_seam_blend
 
 def solution(left_img, right_img):
     """
@@ -31,37 +30,25 @@ def solution(left_img, right_img):
     H_translation = (np.array([[1, 0, (-x_min)], [0, 1, (-y_min)], [0, 0, 1]])).dot(final_H)
 
     output_img = cv2.warpPerspective(left_img, H_translation, (x_max-x_min, y_max-y_min))
-    
-    # Without blending
     output_img[(-y_min):rows1+(-y_min), (-x_min):cols1+(-x_min)] = right_img
     result_img = output_img
-
-    # # Feathering
-    # result_img = feather_blend(output_img, right_img, -x_min, -y_min)
-
-    # # Poisson
-    # result_img = poisson_blend(output_img, right_img, -x_min, -y_min)
-
-    # # Seam
-    # result_img = optimal_seam_blend(output_img, right_img, -x_min, -y_min)
-    
     return result_img
-
+    
 def get_keypoint(left_img, right_img):
     l_img = cv2.cvtColor(left_img, cv2.COLOR_BGR2GRAY)
     r_img = cv2.cvtColor(right_img, cv2.COLOR_BGR2GRAY)
 
-    print("Using SIFT for keypoint detection and description.")
+    fast = cv2.FastFeatureDetector_create()
+    brief = cv2.xfeatures2d.BriefDescriptorExtractor_create()
 
-    sift = cv2.SIFT_create()
+    kp1 = fast.detect(l_img, None)
+    kp1, desc1 = brief.compute(l_img, kp1)
 
-    key_points1, descriptor1 = sift.detectAndCompute(l_img, None)
-    key_points2, descriptor2 = sift.detectAndCompute(r_img, None)
+    kp2 = fast.detect(r_img, None)
+    kp2, desc2 = brief.compute(r_img, kp2)
 
-    print("Number of keypoints in left image:", len(key_points1))
-    print("Number of keypoints in right image:", len(key_points2))
-
-    return key_points1, descriptor1, key_points2, descriptor2
+    print("FAST + BRIEF keypoints:", len(kp1), len(kp2))
+    return kp1, desc1, kp2, desc2
 
 def match_keypoint(key_points1, key_points2, descriptor1, descriptor2):
     bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=False)
@@ -127,7 +114,7 @@ if __name__ == "__main__":
     
     print("Stitching completed.")
     print("Result image shape:", result_img.shape)
-    output_path = f'./output/sift/{left_img_name}_{right_img_name}.jpg'
+    output_path = f'./output/fast/{left_img_name}_{right_img_name}.jpg'
 
     cv2.imwrite(output_path, result_img)
     
