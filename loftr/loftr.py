@@ -12,8 +12,8 @@ def load_images(fnames):
     return [K.io.load_image(fn, K.io.ImageLoadType.RGB32)[None, ...] for fn in fnames]
 
 
-left_img_path = "./images/img_1a.jpg"
-right_img_path = "./images/img_1b.jpg"
+left_img_path = "../images/img_1a.jpg"
+right_img_path = "../images/img_1b.jpg"
 os.makedirs("./output", exist_ok=True)
 output_path = os.path.join("./output", "img_1a_img_1b.jpg")
 

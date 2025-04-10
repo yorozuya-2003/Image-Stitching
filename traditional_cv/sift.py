@@ -116,8 +116,8 @@ if __name__ == "__main__":
     left_img_name = sys.argv[1].split('.')[0]
     right_img_name = sys.argv[2].split('.')[0]
 
-    left_img_path = os.path.join('./images', sys.argv[1])
-    right_img_path = os.path.join('./images', sys.argv[2])
+    left_img_path = os.path.join('../images', sys.argv[1])
+    right_img_path = os.path.join('../images', sys.argv[2])
 
     left_img = cv2.imread(left_img_path)
     right_img = cv2.imread(right_img_path)

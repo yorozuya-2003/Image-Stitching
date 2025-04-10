@@ -10,8 +10,8 @@ from models.utils import read_image, make_matching_plot, AverageTimer
 
 torch.set_grad_enabled(False)
 
-left_img_path = './images/img_1a.jpg'
-right_img_path = './images/img_1b.jpg'
+left_img_path = '../images/img_1a.jpg'
+right_img_path = '../images/img_1b.jpg'
 output_path = './output/matches/v1/img_1a_img_1b.jpg'
 stitched_output_path = './output/v1/img_1a_img_1b.jpg'
 
