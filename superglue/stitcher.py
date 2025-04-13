@@ -164,8 +164,8 @@ def _ransac(good_pts, iterations=5000, threshold=5):
 def main():
     left_img_path = '../images/img_1a.jpg'
     right_img_path = '../images/img_1b.jpg'
-    output_path = './output/v1/img_1a_img_1b.jpg'
-    matches_path = './output/matches/v1/img_1a_img_1b.jpg'
+    output_path = './output/img_1a_img_1b.jpg'
+    matches_path = './output/matches/img_1a_img_1b.jpg'
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
