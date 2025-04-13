@@ -6,8 +6,8 @@ import cv2 as cv
 import os
 import tempfile
 
-from models.matching import Matching
-from models.utils import read_image, make_matching_plot
+from .models.matching import Matching
+from .models.utils import read_image, make_matching_plot
 
 
 def stitch_images(left_image_file, right_image_file, save_matches=False, matches_output_path=None):
