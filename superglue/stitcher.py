@@ -6,8 +6,8 @@ import cv2 as cv
 import os
 import tempfile
 
-from models.matching import Matching
-from models.utils import read_image, make_matching_plot
+from .models.matching import Matching
+from .models.utils import read_image, make_matching_plot
 
 
 def stitch_images(left_image_file, right_image_file, save_matches=False, matches_output_path=None):
@@ -164,8 +164,8 @@ def _ransac(good_pts, iterations=5000, threshold=5):
 def main():
     left_img_path = '../images/img_1a.jpg'
     right_img_path = '../images/img_1b.jpg'
-    output_path = './output/v1/img_1a_img_1b.jpg'
-    matches_path = './output/matches/v1/img_1a_img_1b.jpg'
+    output_path = './output/img_1a_img_1b.jpg'
+    matches_path = './output/matches/img_1a_img_1b.jpg'
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
