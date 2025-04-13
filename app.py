@@ -113,14 +113,6 @@ if method == "Traditional CV":
 
         if detector_type:
             with cols[1]:
-                available_matchers = detector_config[detector_type]['matcher_types']
-                matcher_label = st.selectbox(
-                    "Select Matcher",
-                    [matcher_labels[m] for m in available_matchers],
-                    key='matcher_type'
-                )
-                matcher_type = matcher_label_to_key[matcher_label]
-            with cols[2]:
                 available_blendings = detector_config[detector_type]['blending_types']
                 blending_label = st.selectbox(
                     "Select Blending Type",
@@ -137,7 +129,7 @@ if st.button("Stitch Images"):
                 result_img, exec_time = stitcher.stitch(
                     left_img, right_img,
                     detector=detector_type,
-                    matcher=matcher_type,
+                    matcher="BF",
                     blending_type=blending_type,
                     show=False,
                     return_time=True
